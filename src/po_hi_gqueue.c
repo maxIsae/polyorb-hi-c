@@ -5,8 +5,11 @@
  *
  * For more informations, please visit http://taste.tuxfamily.org/wiki
  *
- * MAX_TEST2 Copyright (C) 2010-2014 ESA & ISAE.
+ * Copyright (C) 2010-2014 ESA & ISAE.
  */
+
+
+
 
 #include <po_hi_config.h>
 #include <po_hi_types.h>
@@ -39,6 +42,10 @@
 
 #if defined (MONITORING) /* Headers from run-time verification */
 #include <trace_manager.hh>
+#endif
+
+#if defined (TEST)
+#include <po_time_benchmarking_TEST.h>
 #endif
 
 #define __PO_HI_GQUEUE_OUT_PORT constant_out_identifier
@@ -80,6 +87,7 @@ RT_COND                 __po_hi_gqueues_conds[__PO_HI_NB_TASKS];
 HANDLE                  __po_hi_gqueues_events[__PO_HI_NB_TASKS];
 CRITICAL_SECTION        __po_hi_gqueues_cs[__PO_HI_NB_TASKS];
 #endif
+
 
 void __po_hi_gqueue_init (__po_hi_task_id       id,
                           __po_hi_uint8_t       nb_ports,
@@ -236,6 +244,11 @@ void __po_hi_gqueue_store_out (__po_hi_task_id id,
    request->port = __PO_HI_GQUEUE_OUT_PORT;
    ptr = &__po_hi_gqueues_most_recent_values[id][port];
    memcpy (ptr, request, sizeof (__po_hi_request_t));
+
+#if defined (TEST)
+   po_hi_put_time_stamp(node_a_pinger_k, pinger_local_data_source,__po_hi_get_CPU_time( ));
+#endif
+
    __PO_HI_DEBUG_DEBUG ("__po_hi_gqueue_store_out() from task %d on port %d\n", id, port);
 }
 
@@ -532,6 +545,10 @@ int __po_hi_gqueue_get_value (__po_hi_task_id      id,
    }
 
 
+#if defined (TEST)
+   po_hi_put_time_stamp(node_a_ping_me_k, ping_me_local_data_sink,__po_hi_get_CPU_time( ));
+#endif
+
    __PO_HI_DEBUG_INFO ("[GQUEUE] Task %d get a value on port %d\n", id, port);
 
 #if defined (POSIX) || defined (RTEMS_POSIX) || defined (XENO_POSIX)
@@ -669,4 +686,6 @@ __po_hi_request_t* ptr;
       memcpy (request, ptr, sizeof (__po_hi_request_t));
    }      return request;
 }
+
+
 

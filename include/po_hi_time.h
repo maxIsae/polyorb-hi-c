@@ -131,6 +131,11 @@ int __po_hi_time_is_greater (const __po_hi_time_t* value, const __po_hi_time_t* 
  * Returns 0 otherwise.
  */
 
+double __po_hi_get_CPU_time( );
+/*
+ * Returns CPU time for time benchmarking
+ */
+
 #include <errno.h>
 #ifndef ETIMEDOUT
 #define ETIMEDOUT 60
