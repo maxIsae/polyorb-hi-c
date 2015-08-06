@@ -5,7 +5,7 @@
  *
  * For more informations, please visit http://taste.tuxfamily.org/wiki
  *
- * Copyright (C) 2010-2014 ESA & ISAE.
+ * MAX Copyright (C) 2010-2014 ESA & ISAE.
  */
 
 #include <po_hi_config.h>
