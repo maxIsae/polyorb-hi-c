@@ -16,8 +16,9 @@ C_FILES =   $(srcdir)/po_hi_task.c           \
 	         $(srcdir)/po_hi_utils.c \
             $(srcdir)/po_hi_simulink.c		\
             $(srcdir)/po_hi_gprof_rtems_leon.c		\
-	         $(srcdir)/po_hi_time.c		\
-             $(srcdir)/po_time_benchmarking_TEST.c 		
+	         $(srcdir)/po_hi_time.c			\
+	         $(srcdir)/po_hi_benchmarking.c		\
+             $(srcdir)/po_hi_queue.c		
 
 csrc = ${shell $(CYGPATH_U) '$(OCARINA_RUNTIME)/polyorb-hi-c/src'}
 

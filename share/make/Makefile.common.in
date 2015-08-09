@@ -225,7 +225,7 @@ hyperperiod-cheddar:
 # TIME BENCHMARKING
 
 ifeq ($(TIME_BENCH), true)
-   PO_HI_OBJS +=   po_time_benchmarking_TEST.o 
+   PO_HI_OBJS +=   po_hi_benchmarking.o po_hi_queue.o 				
    CFLAGS += -DTEST 
 endif
 

@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS = no-dependencies
-SUBDIRS=drivers monitoring 
+SUBDIRS=drivers monitoring
 
 EXTRA_DIST = $(srcdir)/po_hi_common.h \
              $(srcdir)/po_hi_debug.h \
@@ -18,9 +18,9 @@ EXTRA_DIST = $(srcdir)/po_hi_common.h \
              $(srcdir)/po_hi_types.h \
              $(srcdir)/po_hi_main.h \
              $(srcdir)/po_hi_simulink.h \
-             $(srcdir)/po_hi_transport.h \
-             $(srcdir)/po_time_benchmarking_TEST.h 
-
+             $(srcdir)/po_hi_transport.h  \
+             $(srcdir)/po_hi_benchmarking.h\
+             $(srcdir)/po_hi_queue.h
 CLEANFILES = *~
 
 hsrc = ${shell $(CYGPATH_U) '$(OCARINA_RUNTIME)/polyorb-hi-c/include'}
