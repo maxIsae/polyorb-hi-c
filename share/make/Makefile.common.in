@@ -225,8 +225,8 @@ hyperperiod-cheddar:
 # CODE COVERAGE
 
 ifeq ($(CODE_COVERAGE), true)				
-   CFLAGS += -fprofile-arcs -ftest-coverage -lgcov -coverage 		
-   CFLAGS += -DCOVERAGE 
+   LDFLAGS += -fprofile-arcs -ftest-coverage -lgcov -coverage -DCODE_COVERAGE
+   CFLAGS += -fprofile-arcs -ftest-coverage -lgcov -coverage -DCODE_COVERAGE
 endif
 
 ################################################################################
@@ -343,7 +343,7 @@ ifeq ($(TARGET), $(filter $(TARGET), native bench linux32 linux64))
 EXE=$(BINARY)
 $(BINARY):
 	$(MAKE) generate-asn1-deployment target-objects compile-c-files compile-cpp-files compile-ada-files compile-po-hi $(USER_OBJS) $(GENERATED_OBJS) $(TARGET_OBJECTS)
-	$(LD) -fprofile-arcs -ftest-coverage -lgcov -coverage -o $(EXE) $(EXTERNAL_OBJECTS) $(PO_HI_OBJS) $(PO_HI_CPPOBJS) $(GENERATED_OBJS) $(USER_OBJS) $(LDFLAGS)
+	$(LD) -o $(EXE) $(EXTERNAL_OBJECTS) $(PO_HI_OBJS) $(PO_HI_CPPOBJS) $(GENERATED_OBJS) $(USER_OBJS) $(LDFLAGS)
 endif
 
 ifeq ($(TARGET), $(filter $(TARGET), win32))

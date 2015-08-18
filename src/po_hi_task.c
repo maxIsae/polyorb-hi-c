@@ -98,6 +98,24 @@ HANDLE  __po_hi_tasks_array[__PO_HI_NB_TASKS];
 
 void __po_hi_wait_for_tasks ()
 {
+
+#if defined (CODE_COVERAGE)
+
+#define DURATION_OF_EXECUTION_S 10
+   __po_hi_time_t now;
+   __po_hi_time_t ten_secs;
+   __po_hi_time_t time_to_wait;
+   __po_hi_get_time (&now);
+   __po_hi_seconds (&ten_secs, DURATION_OF_EXECUTION_S);
+   __po_hi_add_times (&time_to_wait, &ten_secs, &now);
+   __po_hi_delay_until (&time_to_wait);
+
+  __DEBUGMSG ("Call exit()\n");
+  __po_hi_tasks_killall ();
+   exit (1);
+   
+#else
+
 #if defined (RTEMS_POSIX) || defined (POSIX) || defined (XENO_POSIX)
   int i;
 
@@ -119,6 +137,7 @@ void __po_hi_wait_for_tasks ()
       __PO_HI_DEBUG_DEBUG ("Error while calling rt_task_suspend in __po_hi_wait_for_tasks (ret=%d)\n", ret);
   }
   }
+#endif
 #endif
 
 #ifdef __PO_HI_DEBUG
