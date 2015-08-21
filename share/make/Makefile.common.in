@@ -222,11 +222,19 @@ hyperperiod-cheddar:
 	python parser_cheddar_et.py
 
 ################################################################################
-# CODE COVERAGE
+# CODE COVERAGE WITH GNATCOV
 
-ifeq ($(CODE_COVERAGE), true)				
-   LDFLAGS += -fprofile-arcs -ftest-coverage -lgcov -coverage -DCODE_COVERAGE
-   CFLAGS += -fprofile-arcs -ftest-coverage -lgcov -coverage -DCODE_COVERAGE
+ifeq ($(CODE_COVERAGE_GNATCOV), true)				
+   CFLAGS  += -DCODE_COVERAGE -g -fpreserve-control-flow -fdump-scos -ffunction-sections -fdata-sections -Wl,--gc-sections
+   LDFLAGS += -DCODE_COVERAGE -g -fpreserve-control-flow -fdump-scos -ffunction-sections -fdata-sections -Wl,--gc-sections
+endif
+
+################################################################################
+# CODE COVERAGE WITH GCOV
+
+ifeq ($(CODE_COVERAGE_GCOV), true)				
+   CFLAGS  += -DCODE_COVERAGE -fprofile-arcs -ftest-coverage -lgcov -coverage 
+   LDFLAGS += -DCODE_COVERAGE -fprofile-arcs -ftest-coverage -lgcov -coverage
 endif
 
 ################################################################################

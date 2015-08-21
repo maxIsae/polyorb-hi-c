@@ -1,8 +1,9 @@
 # Set to true to enable monitoring
 MONITORING = false
-# Set to true to code coverage
-CODE_COVERAGE = true
-
+# Set to true to code coverage with gcov
+CODE_COVERAGE_GCOV = true
+# Set to true to code coverage with gnatcov
+CODE_COVERAGE_GNATCOV = true
 
 ################################################################################
 # Added content for integration
