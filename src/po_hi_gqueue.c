@@ -44,8 +44,8 @@
 #include <trace_manager.hh>
 #endif
 
-#if defined (TEST)
-#include <po_time_benchmarking_TEST.h>
+#if defined (TIMEBENCH)
+#include <po_hi_benchmarking.h>
 #endif
 
 #define __PO_HI_GQUEUE_OUT_PORT constant_out_identifier
@@ -245,8 +245,8 @@ void __po_hi_gqueue_store_out (__po_hi_task_id id,
    ptr = &__po_hi_gqueues_most_recent_values[id][port];
    memcpy (ptr, request, sizeof (__po_hi_request_t));
 
-#if defined (TEST)
-   po_hi_put_time_stamp(node_a_pinger_k, pinger_local_data_source,__po_hi_get_CPU_time( ));
+#if defined (TIMEBENCH)
+   po_hi_put_time_stamp(id, port,__po_hi_get_CPU_time( ));
 #endif
 
    __PO_HI_DEBUG_DEBUG ("__po_hi_gqueue_store_out() from task %d on port %d\n", id, port);
@@ -545,8 +545,8 @@ int __po_hi_gqueue_get_value (__po_hi_task_id      id,
    }
 
 
-#if defined (TEST)
-   po_hi_put_time_stamp(node_a_ping_me_k, ping_me_local_data_sink,__po_hi_get_CPU_time( ));
+#if defined (TIMEBENCH)
+   po_hi_put_time_stamp(id, port,__po_hi_get_CPU_time( ));
 #endif
 
    __PO_HI_DEBUG_INFO ("[GQUEUE] Task %d get a value on port %d\n", id, port);

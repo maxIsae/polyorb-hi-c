@@ -3,7 +3,7 @@
 
 
 #include <deployment.h>
-#define TIME_BUFFER_CAPACITY 4
+#define TIME_BUFFER_CAPACITY 10
 
 typedef struct _c_queue_element {
   char task_id_port_name[64];
