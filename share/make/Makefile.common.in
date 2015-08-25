@@ -243,6 +243,14 @@ ifeq ($(TIME_BENCH), true)
 endif
 
 ################################################################################
+# PROFILING
+
+ifeq ($(VALGRIND_PROF), true)		
+   CFLAGS  += -DCODE_COVERAGE -g
+   LDFLAGS += -DCODE_COVERAGE -g
+endif
+
+################################################################################
 # General compilation rules
 
 compile-po-hi:
