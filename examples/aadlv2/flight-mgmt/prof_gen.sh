@@ -46,6 +46,15 @@ elif [ "$CHECK_OPTION" = "call" ]; then
 valgrind --dsymutil=yes --tool=callgrind --callgrind-out-file=$OUTPUT_DIR/callgrind.out $EXEC_FILE_PATH
 callgrind_annotate $OUTPUT_DIR/callgrind.out > $OUTPUT_DIR/callgrind_an.txt
 
+elif [ "$CHECK_OPTION" = "massif" ]; then
+
+valgrind --tool=massif --stacks=yes --massif-out-file=$OUTPUT_DIR/massif.out $EXEC_FILE_PATH
+ms_print $OUTPUT_DIR/massif.out > $OUTPUT_DIR/massif_an.txt
+
+elif [ "$CHECK_OPTION" = "mem" ]; then
+
+valgrind --tool=memcheck --leak-check=full $EXEC_FILE_PATH  2>  $OUTPUT_DIR/memcheck_an.txt
+
 else
 
 echo "Unknown option"

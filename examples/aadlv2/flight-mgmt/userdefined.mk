@@ -1,8 +1,10 @@
-# Set to true to enable monitoring
+# Set to true to enable monitoring 
 MONITORING = false
-# Set to gcov/gnatcov to enable code coverage
-COVERAGE = gnatcov
-
+# Set COVERAGE to gcov/gnatcov to enable code coverage : e.g. COVERAGE = gcov
+COVERAGE = gcov
+# Set VALGRIND_PROF to true to enable profiling with callgrind: e.g.  VALGRIND_PROF = true
+VALGRIND_PROF = true 
+ 
 ################################################################################
 # Added content for integration
 

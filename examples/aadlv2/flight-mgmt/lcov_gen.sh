@@ -1,5 +1,23 @@
 #!/bin/sh
-OUTPUT_DIR=./lcov_output
+for i in "$@"
+do
+case $i in
+    --output-dir-name=*)
+    OUTPUT_DIR="${i#*=}" #ONLY NAME OF DIR
+    shift # past argument=value
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+done
+
+if [ -z "$OUTPUT_DIR" ]; then
+  OUTPUT_DIR=./gcov_output
+else
+  OUTPUT_DIR=./$OUTPUT_DIR
+fi
+
 if (! test -d $OUTPUT_DIR )
 then
   echo "Missing path: $OUTPUT_DIR. Creating directory..."
